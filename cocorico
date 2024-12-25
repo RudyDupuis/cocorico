@@ -1,0 +1,2 @@
+#!/bin/bash
+python ./src/cocorico.py "$1"
