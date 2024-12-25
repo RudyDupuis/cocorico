@@ -1,2 +1,10 @@
 nombre chiffre_déclaré = 5
 chaîne phrase_déclaré = "Bonjour le monde"
+booléen ça_marche = vrai
+
+#Cette fonction sert à ...
+fonction fait_quelque_chose(nombre prend_un_nombre) {
+    nombre + 5 / 8
+}
+
+fait_quelque_chose(56,3)

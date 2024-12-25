@@ -5,14 +5,20 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
-                "editor.formatOnSave": true
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true,
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true,
+                "python.languageServer": "Pylance",
+                "python.analysis.typeCheckingMode": "strict"
             },
             "extensions": [
                 "ms-python.python",
                 "ms-python.pylint",
                 "esbenp.prettier-vscode",
-                "ms-python.black-formatter"
+                "ms-python.black-formatter",
+                "ms-python.vscode-pylance"
             ]
         }
     },
