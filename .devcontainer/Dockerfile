@@ -1,6 +1,7 @@
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y \
+    git \
     build-essential \
     python3-dev \
     python3-pip \

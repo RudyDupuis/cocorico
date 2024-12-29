@@ -1,8 +1,9 @@
 import argparse
 import os
 import sys
-from utils.errors_handler import print_error_message
-from lexer import Lexer
+from shared.errors_handler import print_error_message
+from c_lexer import Lexer
+from c_parser import Parser
 
 parser = argparse.ArgumentParser(description="Exécuter un fichier Cocorico (.ccrc)")
 parser.add_argument("fichier", help="Chemin du fichier Cocorico (.ccrc)")
@@ -19,9 +20,15 @@ if not os.path.exists(args.fichier):
 
 try:
     with open(args.fichier, "r", encoding="utf-8") as file:
-        for index, line in enumerate(file):
-            lexer = Lexer(line, index + 1)
-            print(lexer.get_tokens())
+        lexer = Lexer(file)
+        paser = Parser(lexer.get_lexer_tokens())
+
+        # for token in lexer.get_lexer_tokens():
+        #     print(token)
+
+        for node in paser.get_program():
+            print(node)
+
 
 except FileNotFoundError:
     print_error_message(f"Le fichier {args.fichier} n'a pas été trouvé.")
