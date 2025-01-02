@@ -1,7 +1,4 @@
-nombre chiffre_déclaré
-texte phrase_déclaré = "Bonjour le monde"
-
-chiffre_déclaré = 5
-
-afficher(chiffre_déclaré)
-afficher(phrase_déclaré)
+texte nom
+nom = "ma phrase à afficher"
+nom = "au final je veux afficher çà"
+afficher(nom)

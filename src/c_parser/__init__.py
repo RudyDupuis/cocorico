@@ -8,7 +8,7 @@ from shared.token.token import Token
 
 class Parser:
     def __init__(self, tokens: list[Token]):
-        self.program: list[ASTNode] = []
+        self.ast: list[ASTNode] = []
         self.tokens = tokens
         self.position_on_tokens = 0
         self.parse()
@@ -32,7 +32,7 @@ class Parser:
                 self.consume()
 
             if len(instruction) > 0:
-                self.program.append(self._parse_instruction(instruction))
+                self.ast.append(self._parse_instruction(instruction))
                 instruction.clear()
 
             self.consume()
@@ -59,5 +59,5 @@ class Parser:
             + "."
         )
 
-    def get_program(self):
-        return self.program
+    def get_ast(self):
+        return self.ast
