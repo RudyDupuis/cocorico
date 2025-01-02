@@ -11,5 +11,5 @@ def parse_assignment(instruction: list[Token]):
             return AssignNode(instruction[0].value, StringNode(instruction[2].value))
 
     raise SyntaxError(
-        f'{instruction[0].position} : La déclaration d\'une référence se fait de cette manière -> nom = valeur, et la valeur doit être un texte délimité par "" ou un nombre.'
+        f'{instruction[0].position} : La modification d\'une référence se fait de cette manière -> nom = valeur, et la valeur doit être un texte délimité par "" ou un nombre.'
     )

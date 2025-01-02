@@ -1,4 +1,7 @@
+nombre chiffre_déclaré
+texte phrase_déclaré = "Bonjour le monde"
+
 chiffre_déclaré = 5
-phrase_déclaré = "Bonjour le monde"
+
 afficher(chiffre_déclaré)
 afficher(phrase_déclaré)

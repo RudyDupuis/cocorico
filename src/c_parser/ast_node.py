@@ -1,3 +1,6 @@
+from shared.token.token_name_enum import TokenNameEnum
+
+
 class ASTNode:
     pass
 
@@ -27,9 +30,24 @@ class PrintNode(ASTNode):
 
 
 class AssignNode(ASTNode):
-    def __init__(self, identifier: str, type_node: ASTNode):
+    def __init__(self, identifier: str, value: ASTNode):
         self.identifier = identifier
-        self.type_node = type_node
+        self.value = value
 
     def __str__(self):
-        return f"AssignNode({self.identifier}, {self.type_node})"
+        return f"AssignNode({self.identifier}, {self.value})"
+
+
+class DeclareNode(ASTNode):
+    def __init__(
+        self,
+        data_type: TokenNameEnum,
+        identifier: str,
+        value: ASTNode | None = None,
+    ):
+        self.data_type = data_type
+        self.identifier = identifier
+        self.value = value
+
+    def __str__(self):
+        return f"DeclareNode({self.data_type}, {self.identifier}, {self.value})"

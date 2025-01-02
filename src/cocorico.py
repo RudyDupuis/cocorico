@@ -21,10 +21,11 @@ if not os.path.exists(args.fichier):
 try:
     with open(args.fichier, "r", encoding="utf-8") as file:
         lexer = Lexer(file)
-        paser = Parser(lexer.get_lexer_tokens())
 
         # for token in lexer.get_lexer_tokens():
         #     print(token)
+
+        paser = Parser(lexer.get_lexer_tokens())
 
         for node in paser.get_program():
             print(node)

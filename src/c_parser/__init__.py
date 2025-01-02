@@ -1,4 +1,5 @@
 from c_parser.ast_node import ASTNode
+from c_parser.parsing_method.parse_declaration import parse_declaration
 from c_parser.parsing_method.parse_assignment import parse_assignment
 from c_parser.parsing_method.parse_print import parse_print
 from shared.token.token_name_enum import TokenNameEnum
@@ -30,8 +31,10 @@ class Parser:
                 instruction.append(self.current_token())
                 self.consume()
 
-            self.program.append(self._parse_instruction(instruction))
-            instruction.clear()
+            if len(instruction) > 0:
+                self.program.append(self._parse_instruction(instruction))
+                instruction.clear()
+
             self.consume()
 
     def _parse_instruction(self, instruction: list[Token]):
@@ -41,12 +44,18 @@ class Parser:
         ):
             return parse_assignment(instruction)
 
+        if (
+            instruction[0].name in [TokenNameEnum.NUMBER, TokenNameEnum.STRING]
+            and instruction[1].name == TokenNameEnum.IDENTIFIER
+        ):
+            return parse_declaration(instruction)
+
         if instruction[0].name == TokenNameEnum.PRINT:
             return parse_print(instruction)
 
         raise SyntaxError(
             f"{instruction[0].position} : Cette instruction n'est pas valide : "
-            + "".join(token.value for token in instruction)
+            + " ".join(token.value for token in instruction)
             + "."
         )
 
