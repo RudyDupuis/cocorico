@@ -1,4 +1,11 @@
 texte nom
+texte nom2 = "ma deuxième phrase"
+nombre nom3 = 52
+
 nom = "ma phrase à afficher"
 nom = "au final je veux afficher çà"
+nom3 = 52
+
 afficher(nom)
+afficher(nom2)
+afficher(nom3)
