@@ -1,4 +1,5 @@
 from c_parser.ast_node import *
+from shared.token.token_position import TokenPosition
 
 
 class Compiler:
@@ -7,7 +8,9 @@ class Compiler:
         self.data_section: list[str] = []
         self.text_section: list[str] = []
         self.counter = 0
-        self.identifier_counter: dict[str, int] = {}
+        self.identifier_counter: dict[str, int] = (
+            {}
+        )  # Make a object with the identifier, the counter and the type
 
     def compile(self):
         self.text_section.append("section .text")
@@ -33,7 +36,9 @@ class Compiler:
 
         if isinstance(node, DeclareNode):
             if node.identifier in self.identifier_counter:
-                raise SyntaxError(f"La variable '{node.identifier}' est déjà definie.")
+                raise SyntaxError(
+                    f"{node.position} : La variable '{node.identifier}' est déjà definie."
+                )
 
             self.identifier_counter[node.identifier] = -1
             self.data_section.append(f"{node.identifier} dq 0")
@@ -47,7 +52,11 @@ class Compiler:
         if isinstance(node, PrintNode):
             visit_print(self, node)
 
-    def get_identifier_counter(self, identifier: str):
+    def get_identifier_counter(
+        self, identifier: str, identifier_position: TokenPosition
+    ):
         if identifier in self.identifier_counter:
             return self.identifier_counter[identifier]
-        raise SyntaxError(f"La variable '{identifier}' n'est pas déclarée.")
+        raise SyntaxError(
+            f"{identifier_position} : La variable '{identifier}' n'est pas déclarée."
+        )

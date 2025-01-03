@@ -9,17 +9,21 @@ def parse_declaration(instruction: list[Token]):
             return DeclareNode(
                 instruction[0].name,
                 instruction[1].value,
-                NumberNode(instruction[3].value),
+                instruction[1].position,
+                NumberNode(instruction[3].value, instruction[3].position),
             )
         if instruction[3].name == TokenNameEnum.STRING_LITERAL:
             return DeclareNode(
                 instruction[0].name,
                 instruction[1].value,
-                StringNode(instruction[3].value),
+                instruction[1].position,
+                StringNode(instruction[3].value, instruction[3].position),
             )
 
     if len(instruction) == 2:
-        return DeclareNode(instruction[0].name, instruction[1].value)
+        return DeclareNode(
+            instruction[0].name, instruction[1].value, instruction[1].position
+        )
 
     raise SyntaxError(
         f'{instruction[0].position} : La déclaration d\'une référence se fait de cette manière -> type nom = valeur, et la valeur doit être un texte délimité par "" ou un nombre.'

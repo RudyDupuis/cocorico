@@ -3,7 +3,7 @@ from c_parser.ast_node import PrintNode
 
 
 def visit_print(compiler: Compiler, node: PrintNode):
-    counter = compiler.get_identifier_counter(node.identifier)
+    counter = compiler.get_identifier_counter(node.identifier, node.position)
 
     compiler.text_section.append(f"mov rsi, str_{counter}")
     compiler.text_section.append(f"mov rdx, [size_{counter}]")

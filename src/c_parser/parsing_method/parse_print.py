@@ -15,7 +15,7 @@ def parse_print(instruction: list[Token]):
         ]
         and instruction[3].name == TokenNameEnum.RIGHT_PAREN
     ):
-        return PrintNode(instruction[2].value)
+        return PrintNode(instruction[2].value, instruction[2].position)
 
     raise SyntaxError(
         f"{instruction[0].position} : La méthode afficher doit s'écrire de cette manière -> afficher(paramètre), et le paramètre doit être un nombre, un texte ou une référence."
